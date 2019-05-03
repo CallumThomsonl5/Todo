@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import json, sys, os
-
-        
+ 
 def main():
     def getHomeDir():
         homedir = os.environ['HOME']
@@ -57,7 +56,7 @@ exit Exits program"""
             
         elif input1 == "list":
             for x in readData:
-                print(x, readData[x])
+                print("["+x+"]", readData[x])
         elif input1 == "help" or input1 == "?":
             print(help)
         elif input1 == "clear":
