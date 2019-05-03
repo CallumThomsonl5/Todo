@@ -8,8 +8,7 @@ def getHomeDir():
     return homedir
 
 template = {
-    '1': 'gwwg',
-    '2': 'wrggwgwgg'
+    '1': 'First Todo'
 }
 
 help = """add: adds todo
@@ -23,11 +22,13 @@ try:
     database = open("{}/.todo".format(getHomeDir()), 'w+')
     database.write(json.dumps(template))
     database.close()
+    print("Created {}/.todo".format(getHomeDir()))
+    print("Reading todo database from {}/.todo".format(getHomeDir()))
 except:
     print("Reading todo database from {}/.todo".format(getHomeDir()))
 
 while True:
-    input1 = input("> ").lower()
+    input1 = input("> ").lower().strip()
     database = open("{}/.todo".format(getHomeDir()), 'r')
     readData = json.load(database)
     
@@ -61,7 +62,14 @@ while True:
         for x in range(50):
             print(">\n>")
     elif input1 == "delete":
-        print("Removed todo")
+        input2 = input("Which entry would you like to delete?: ")
+
+        readDataDelEhh = open("{}/.todo".format(getHomeDir()), 'w')
+        del readData[input2]
+        json.dump(readData, readDataDelEhh)
+        print("Removed todo", input2)
+        readDataDelEhh.close()
+        database.close()
     else:
         print("Unknown command")
         print(help)
