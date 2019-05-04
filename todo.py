@@ -70,8 +70,9 @@ wipeall Wipes all entries"""
                 for x in readData:
                     i = x
                 
-                if i is None:
-                    print("i is none")
+                try:
+                    checkhasvalue = i
+                except UnboundLocalError:
                     i = 0
 
                 i = int(i)
