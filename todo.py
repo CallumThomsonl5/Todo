@@ -101,8 +101,8 @@ wipeall Wipes all entries"""
                 else:
                     print("You didn't enter y or n")
             else:
-                print("Unknown command")
-                print(help)
+                print("{}: command not found".format(input1))
+                print("Type ? to see list of commands")
     except KeyboardInterrupt:
         print("To exit, type exit or quit")
         main(False)
