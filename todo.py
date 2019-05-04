@@ -95,8 +95,9 @@ wipeall Wipes all entries"""
                 if areyousure == "y":
                     os.system("rm {}/.todo".format(getHomeDir()))
                     print("Deleted all entries")
-                    print("Exiting...")
-                    sys.exit()
+                    print("Restarting...")
+                    program = sys.executable
+                    os.execl(program, program, * sys.argv)
                 elif areyousure == "n":
                     print("Cancelled")
                 else:
