@@ -29,8 +29,6 @@ wipeall Wipes all entries"""
     except:
         if isfirstrun:
             print("Reading todo database from {}/.todo".format(getHomeDir()))
-        else:
-            pass
     try:
         while True:
             input1 = input("> ").lower().strip()
@@ -51,13 +49,13 @@ wipeall Wipes all entries"""
                 input2 = input("Which entry would you like to delete?: ")
 
                 try:
-                    readDataDelEhh = open("{}/.todo".format(getHomeDir()), 'w')
                     del readData[input2]
-                    json.dump(readData, readDataDelEhh)
+                    writeData = open("{}/.todo".format(getHomeDir()), 'w')
+                    json.dump(readData, writeData)
                     print("Removed todo", input2)
-                    readDataDelEhh.close()
+                    writeData.close()
                     database.close()
-                except KeyError:
+                except:
                     print("This todo does not exist")
             elif input1 == "add":
                 #Input
