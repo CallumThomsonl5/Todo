@@ -69,6 +69,10 @@ wipeall Wipes all entries"""
                 #Get data to put in file
                 for x in readData:
                     i = x
+                
+                if i is None:
+                    print("i is none")
+                    i = 0
 
                 i = int(i)
                 i += 1
