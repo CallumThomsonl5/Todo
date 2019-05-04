@@ -36,17 +36,23 @@ exit Exits program"""
         if input1 == "exit" or input1 == "quit":
             sys.exit()
         elif input1 == "add":
+            #Input
             add = input("What would you like to add to todo list?: ")
+            
+            #Notify user that todo is added
             print("Added {} to your todo list.".format(add))
+            
             i = 0
             for x in readData:
                 i = i + 1
             x = i+1
+
             newList = {
                 x:add
             }
+            
+            #Update file
             readData.update(newList)
-
             dataFile = open('{}/.todo'.format(getHomeDir()), 'w')
             json.dump(readData, dataFile)
             dataFile.close()
