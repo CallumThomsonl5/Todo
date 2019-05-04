@@ -35,7 +35,7 @@ exit Exits program"""
         
         if input1 == "exit" or input1 == "quit":
             sys.exit()
-        elif input1 == "list":
+        elif input1 == "list" or input1 == "ls":
             for x in readData:
                 print("["+x+"]", readData[x])
         elif input1 == "help" or input1 == "?":
@@ -46,12 +46,15 @@ exit Exits program"""
         elif input1 == "delete" or input1 == "remove":
             input2 = input("Which entry would you like to delete?: ")
 
-            readDataDelEhh = open("{}/.todo".format(getHomeDir()), 'w')
-            del readData[input2]
-            json.dump(readData, readDataDelEhh)
-            print("Removed todo", input2)
-            readDataDelEhh.close()
-            database.close()
+            try:
+                readDataDelEhh = open("{}/.todo".format(getHomeDir()), 'w')
+                del readData[input2]
+                json.dump(readData, readDataDelEhh)
+                print("Removed todo", input2)
+                readDataDelEhh.close()
+                database.close()
+            except KeyError:
+                print("This todo does not exist")
         elif input1 == "add":
             #Input
             add = input("What would you like to add to todo list?: ")
@@ -61,17 +64,34 @@ exit Exits program"""
             
             #Get data to put in file
             for x in readData:
-                y = len(x)
-                try:
-                    checkexistance = readData[y]
-                except KeyError:
-                    print(y)
+                i = x
+
+            i = int(i)
+            i += 1
+            i = str(i)
+            newList = {
+                i:add
+            }
+
             #Update file
-            # readData.update(newList)
-            # dataFile = open('{}/.todo'.format(getHomeDir()), 'w')
-            # json.dump(readData, dataFile)
-            # dataFile.close()
-            # database.close()
+            readData.update(newList)
+            dataFile = open('{}/.todo'.format(getHomeDir()), 'w')
+            json.dump(readData, dataFile)
+            dataFile.close()
+            database.close()
+        elif input1 == "":
+            pass
+        elif input1 == "wipeall":
+            areyousure = input("Are you sure you want to delete all entries? [Y][N]: ").lower().strip()
+            if areyousure == "y":
+                os.system("rm {}/.todo".format(getHomeDir()))
+                print("Deleted all entries")
+                print("Exiting...")
+                sys.exit()
+            elif areyousure == "n":
+                print("Cancelled")
+            else:
+                print("You didn't enter y or n")
         else:
             print("Unknown command")
             print(help)
