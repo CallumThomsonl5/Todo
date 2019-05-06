@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import json, sys, os, socket
+import json, sys, os
  
 def main(isfirstrun):
     def getHomeDir():
