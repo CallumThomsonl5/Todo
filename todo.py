@@ -34,7 +34,7 @@ wipeall Wipes all entries"""
             input1 = input("> ").lower().strip()
             database = open("{}/.todo".format(getHomeDir()), 'r')
             readData = json.load(database)
-            
+
             if input1 in "exit quit".split():
                 sys.exit()
             elif input1 == "list" or input1 == "ls":
