@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import json, sys, os
+import json, sys, os, socket
  
 def main(isfirstrun):
     def getHomeDir():
@@ -76,6 +76,7 @@ wipeall Wipes all entries"""
                 latestEntry = int(latestEntry)
                 latestEntry += 1
                 latestEntry = str(latestEntry)
+                
                 newList = {
                     latestEntry:add
                 }
